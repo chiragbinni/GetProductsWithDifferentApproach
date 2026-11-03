@@ -2,23 +2,10 @@
 
 ## Overview
 
-Please spend no more than **2 hours** on this exercise.
+Added React UI project (Single page application) 
+Calling API endpoints to get products/categories data.
+Comsuming API data and display into react ui
 
-When you're done, please either:
-
-- Upload your solution to a public GitHub repository and share the link, **or**
-- Zip your solution and send it back via email.
-
-## The task
-
-Using the provided solution, create the following
-
-- A page to list and search for products
-- A responsive UI (it does not need to look pretty)
-- A way to view which products come from what category
-- Any validation, error handling, or business rules you think make sense for this kind of data
-
-For the UI, pick whatever you're comfortable with — vanilla JS or a framework.
 
 ## What's provided
 
