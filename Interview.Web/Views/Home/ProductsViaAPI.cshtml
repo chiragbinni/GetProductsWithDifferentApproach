@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Interview.Web.Models.ProductWithCategoryViewModel>
+@{
+    ViewData["Title"] = "ProductsViaAPI";
+    string search = ViewBag.Search as string ?? "";
+    string sort = ViewBag.Sort as string ?? "name";
+    string direction = ViewBag.Direction as string ?? "asc";
+    string nextDir(string col) => (sort == col && direction == "asc") ? "desc" : "asc";
+    var categories = ViewBag.Categories as List<Infrastructure.Models.Category>;
+    var selectedCategory = ViewBag.SelectedCategory as Guid?;
+}
+
+<h2>ProductsViaAPI</h2>
+
+<form method="get" class="mb-3 d-flex">
+    <input type="text" name="search" value="@search" class="form-control me-2" placeholder="Search by name or SKU" />
+    <select name="categoryId" class="form-select me-2" style="max-width:200px;">
+        <option value="">All Categories</option>
+        @if (categories != null)
+        {
+            @foreach (var cat in categories)
+            {
+                <option value="@cat.CategoryId" selected="@(selectedCategory == cat.CategoryId ? "selected" : null)">
+                    @cat.Name
+                </option>
+            }
+        }
+    </select>
+    <button type="submit" class="btn btn-primary me-2">Search</button>
+    <a href="@Url.Action("ProductsViaAPI", "Home")" class="btn btn-secondary">Clear</a>
+</form>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="ProductsViaAPI" asp-route-sort="category" asp-route-direction="@nextDir("category")" asp-route-search="@search">
+                    Category @(sort == "category" ? (direction == "asc" ? "▲" : "▼") : "")
+                </a>
+            </th>
+            <th>
+                <a asp-action="ProductsViaAPI" asp-route-sort="name" asp-route-direction="@nextDir("name")" asp-route-search="@search">
+                    Name @(sort == "name" ? (direction == "asc" ? "▲" : "▼") : "")
+                </a>
+            </th>
+            <th>
+                <a asp-action="ProductsViaAPI" asp-route-sort="sku" asp-route-direction="@nextDir("sku")" asp-route-search="@search">
+                    SKU @(sort == "sku" ? (direction == "asc" ? "▲" : "▼") : "")
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.CategoryName</td>
+                <td>@product.Name</td>
+                <td>@product.Sku</td>
+            </tr>
+        }
+    </tbody>
+</table>
