@@ -1,10 +1,11 @@
 # Take Home Task
 
 ## Overview
-
-Added React UI project (Single page application) 
-Calling API endpoints to get products/categories data.
-Comsuming API data and display into react ui
+Populate Products list along with search filters with different approach.
+Get list into traditional MVC pattern with razor views
+Get list into MVC via API to API call with the help of HTTPCLIENT 
+Added React UI project (Single page application). Calling API endpoints to get products/categories data.
+Comsuming API data and display into react ui.
 
 
 ## What's provided
